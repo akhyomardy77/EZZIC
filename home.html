@@ -183,7 +183,7 @@
           <!-- Kanan: Menu Navigasi & Hamburger 3 Garis Hitam -->
           <div class="flex items-center gap-8 sm:gap-16 md:gap-24 lg:gap-28 pr-1 sm:pr-2">
             <nav class="hidden md:flex items-center gap-10 lg:gap-14 text-[12px] font-medium tracking-normal text-[#111111]">
-              <a href="home.html" class="hover:opacity-60 transition-opacity">Beranda</a>
+              <a href="#beranda" class="hover:opacity-60 transition-opacity">Beranda</a>
               <a href="#akses-cepat" class="hover:opacity-60 transition-opacity">Toko</a>
               <a href="#mengapa-ezzic" class="hover:opacity-60 transition-opacity">Tentang Kami</a>
             </nav>
@@ -215,7 +215,7 @@
     </header>
 
     <!-- =========================================================
-         HERO SECTION (Tetap dari Code Gemini)
+         HERO SECTION
     ========================================================== -->
     <section id="beranda" class="relative w-full h-[500px] sm:h-[580px] md:h-[660px] flex overflow-hidden">
 
@@ -249,10 +249,10 @@
           </svg>
         </div>
 
-        <!-- Hero Model Image -->
+        <!-- Hero Model Image (Mengambil 5.png) -->
         <img
           id="hero-model-img"
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=950&q=85"
+          src="5.png"
           alt="Model Pria Moslem Wear Hitam"
           class="relative z-[2] w-full h-[94%] object-cover object-top mix-blend-normal brightness-[0.88] contrast-[1.15] saturate-[0.75] select-none"
         />
@@ -290,7 +290,7 @@
           </span>
         </div>
 
-        <!-- "Moslem Wear" + overlapping "Style" script -->
+        <!-- "Moslem Wear" + overlapping "Style" script (Style / stor sedikit diturunkan) -->
         <div
           class="absolute top-[39.5%] sm:top-[39%] left-[41%] sm:left-[41.5%] select-none"
         >
@@ -299,7 +299,7 @@
               Moslem Wear
             </h1>
             <span
-              class="font-script text-[36px] sm:text-[54px] md:text-[70px] lg:text-[82px] text-[#f5efe0] absolute -bottom-[18px] sm:-bottom-[28px] md:-bottom-[36px] left-[22px] sm:left-[34px] md:left-[44px] -rotate-[4deg] drop-shadow-[0_3px_10px_rgba(0,0,0,0.65)] pointer-events-none"
+              class="font-script text-[36px] sm:text-[54px] md:text-[70px] lg:text-[82px] text-[#f5efe0] absolute -bottom-[12px] sm:-bottom-[20px] md:-bottom-[28px] left-[22px] sm:left-[34px] md:left-[44px] -rotate-[4deg] drop-shadow-[0_3px_10px_rgba(0,0,0,0.65)] pointer-events-none"
             >
               Style
             </span>
@@ -521,7 +521,7 @@
        INTERACTIVE SCRIPTS
   ========================================================== -->
   <script>
-    // 1. Toggle Mobile Menu (dari code ezzic)
+    // 1. Toggle Mobile Menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     menuBtn.addEventListener('click', () => {
