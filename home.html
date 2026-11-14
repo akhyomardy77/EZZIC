@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EZZIC — Moslem Wear Style</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Great+Vibes&family=Inter:wght@400;500;600;700;800;900&family=Montserrat:ital,wght@0,700;0,800;0,900;1,900&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg-dark: #1d1d1d;
+      --cream: #f7f1e1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-dark);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Font Logo EZZIC dari code ezzic */
+    .font-logo {
+      font-family: 'Anton', sans-serif;
+    }
+
+    /* Checkered / Diamond Dark Pattern on Hero Right */
+    .hero-checkered {
+      background-color: #161616;
+      background-image:
+        linear-gradient(45deg, #2c2c2c 25%, transparent 25%),
+        linear-gradient(-45deg, #2c2c2c 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #2c2c2c 75%),
+        linear-gradient(-45deg, transparent 75%, #2c2c2c 75%);
+      background-size: 56px 56px;
+      background-position: 0 0, 0 28px, 28px -28px, -28px 0;
+      position: relative;
+    }
+
+    .hero-checkered::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 70% 35%, rgba(255, 255, 255, 0.08) 0%, transparent 55%),
+        linear-gradient(135deg, rgba(0, 0, 0, 0.45) 0%, rgba(45, 45, 45, 0.15) 50%, rgba(0, 0, 0, 0.65) 100%);
+      pointer-events: none;
+    }
+
+    /* Diagonal Striped Ticker / Divider Bar */
+    .striped-divider {
+      height: 22px;
+      width: 100%;
+      background: repeating-linear-gradient(
+        -60deg,
+        var(--cream) 0px,
+        var(--cream) 11px,
+        #191919 11px,
+        #191919 22px
+      );
+      border-top: 2px solid #141414;
+      border-bottom: 2px solid #141414;
+    }
+
+    /* Static Diagonal Striped Square (No Glitch) */
+    .striped-square {
+      background: repeating-linear-gradient(
+        45deg,
+        #ffffff 0px,
+        #ffffff 6.5px,
+        #181818 6.5px,
+        #181818 13px
+      );
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Script Font for "Style" */
+    .font-script {
+      font-family: 'Great Vibes', cursive;
+    }
+
+    /* Heavy Display Font for "Moslem Wear" */
+    .font-display {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+    }
+
+    /* Monospace Distortion Paragraph */
+    .font-mono-wide {
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* Custom Image Upload Overlay */
+    .img-slot-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-upload-trigger {
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .img-slot-wrapper:hover .img-upload-trigger {
+      opacity: 1;
+    }
+
+    /* Bottom fade on white-background studio cards matching screenshot */
+    .card-bottom-fade::after {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0;
+      height: 44%;
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.45) 55%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black">
+
+  <!-- MAIN PAGE WRAPPER -->
+  <div id="page-container" class="relative w-full min-h-screen bg-[#1d1d1d] overflow-hidden">
+
+    <!-- =========================================================
+         NAVBAR DIAMBIL DARI CODE EZZIC (Transparent Diagonal Cutouts)
+    ========================================================== -->
+    <header class="fixed top-6 sm:top-7 left-0 right-0 z-50 px-5 sm:px-10 md:px-14 pointer-events-none select-none">
+      <div class="relative mx-auto w-full max-w-[1280px] h-[56px] sm:h-[62px] pointer-events-auto">
+        
+        <!-- Latar Putih Solid dengan 3 Celah Potongan Diagonal Transparan 100% -->
+        <svg 
+          class="absolute inset-0 w-full h-full drop-shadow-[0_10px_28px_rgba(0,0,0,0.28)]" 
+          viewBox="0 0 1280 62" 
+          preserveAspectRatio="none" 
+          fill="none"
+        >
+          <!-- Blok Putih Kiri (Tempat Logo EZZIC) dengan sisi kanan miring ~52 derajat -->
+          <polygon points="0,0 326,0 374,62 0,62" fill="#FFFFFF" />
+
+          <!-- Bilah Putih Miring Pertama (Terpisah penuh atas ke bawah oleh celah transparan) -->
+          <polygon points="342,0 374,0 422,62 390,62" fill="#FFFFFF" />
+
+          <!-- Bagian Putih Kanan yang membentuk jembatan atas & siku bawah mengapit 2 celah transparan -->
+          <path 
+            d="M 390,0 
+               L 1280,0 
+               L 1280,62 
+               L 486,62 
+               L 456,23 
+               L 439,23 
+               L 469,62 
+               L 422,62 
+               L 407,43 
+               L 424,43 
+               Z" 
+            fill="#FFFFFF" 
+          />
+        </svg>
+
+        <!-- Konten Interaktif di Atas Latar Navbar -->
+        <div class="relative z-10 w-full h-full flex items-center justify-between px-4 sm:px-7">
+          
+          <!-- Kiri: Logo Teks EZZIC (Tall Ultra-Condensed Bold) -->
+          <a href="#beranda" class="flex items-center group" aria-label="EZZIC Home">
+            <span class="font-logo text-black text-[28px] sm:text-[32px] leading-none tracking-[-0.02em] scale-y-[1.15] inline-block group-hover:opacity-75 transition-opacity">
+              EZZIC
+            </span>
+          </a>
+
+          <!-- Kanan: Menu Navigasi & Hamburger 3 Garis Hitam -->
+          <div class="flex items-center gap-8 sm:gap-16 md:gap-24 lg:gap-28 pr-1 sm:pr-2">
+            <nav class="hidden md:flex items-center gap-10 lg:gap-14 text-[12px] font-medium tracking-normal text-[#111111]">
+              <a href="#beranda" class="hover:opacity-60 transition-opacity">Beranda</a>
+              <a href="#akses-cepat" class="hover:opacity-60 transition-opacity">Toko</a>
+              <a href="#mengapa-ezzic" class="hover:opacity-60 transition-opacity">Tentang Kami</a>
+            </nav>
+
+            <!-- Hamburger Menu 3 Garis Horizontal Hitam -->
+            <button id="menuBtn" aria-label="Buka Menu" class="p-1.5 text-[#111111] hover:opacity-65 transition-opacity">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                <line x1="2" y1="6" x2="22" y2="6" stroke="#111111" stroke-width="2" />
+                <line x1="2" y1="12" x2="22" y2="12" stroke="#111111" stroke-width="2" />
+                <line x1="2" y1="18" x2="22" y2="18" stroke="#111111" stroke-width="2" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile / Quick Dropdown Drawer -->
+        <div id="mobileMenu" class="hidden mt-2 bg-white/95 backdrop-blur-md border border-neutral-200 px-6 py-4 shadow-2xl">
+          <div class="flex flex-col space-y-3 text-xs font-semibold text-[#111111]">
+            <a href="#beranda" class="mobile-link py-1 hover:opacity-65">Beranda</a>
+            <a href="#akses-cepat" class="mobile-link py-1 hover:opacity-65">Toko</a>
+            <a href="#mengapa-ezzic" class="mobile-link py-1 hover:opacity-65">Tentang Kami</a>
+            <div class="pt-2 border-t border-neutral-200 text-[11px] text-neutral-500 font-normal">
+              Tip: Arahkan kursor atau ketuk foto produk untuk mengganti gambar dari perangkat Anda.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- =========================================================
+         HERO SECTION (Tetap dari Code Gemini)
+    ========================================================== -->
+    <section id="beranda" class="relative w-full h-[500px] sm:h-[580px] md:h-[660px] flex overflow-hidden">
+
+      <!-- Left Column (56.5%): Studio Grey Background + Model & Luxury Car -->
+      <div class="img-slot-wrapper relative w-[56.5%] h-full bg-gradient-to-b from-[#9c9ea1] via-[#8a8c8f] to-[#686a6d] flex items-end justify-center overflow-hidden">
+        <!-- Subtle studio backdrop lighting -->
+        <div
+          class="absolute inset-0 pointer-events-none"
+          style="background: radial-gradient(circle at 46% 32%, rgba(255,255,255,0.28) 0%, rgba(0,0,0,0.22) 85%);"
+        ></div>
+
+        <!-- Subtle dark luxury SUV silhouette in bottom-left background matching screenshot -->
+        <div class="absolute left-0 bottom-0 w-[52%] h-[42%] pointer-events-none opacity-85 z-[1]">
+          <svg viewBox="0 0 320 180" class="w-full h-full object-cover" preserveAspectRatio="xMinYMax slice">
+            <defs>
+              <linearGradient id="carBody" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2b2b2b" />
+                <stop offset="50%" stop-color="#111111" />
+                <stop offset="100%" stop-color="#050505" />
+              </linearGradient>
+            </defs>
+            <path d="M-20,38 L135,38 L168,86 L-20,86 Z" fill="#181818" />
+            <path d="M-10,45 L126,45 L152,82 L-10,82 Z" fill="#2f3236" opacity="0.7" />
+            <path d="M-20,86 L215,92 L228,125 L222,168 L-20,168 Z" fill="url(#carBody)" />
+            <rect x="85" y="106" width="95" height="28" rx="3" fill="#0b0b0b" stroke="#444" stroke-width="1.5" />
+            <line x1="85" y1="115" x2="180" y2="115" stroke="#555" stroke-width="1.5" />
+            <line x1="85" y1="124" x2="180" y2="124" stroke="#555" stroke-width="1.5" />
+            <circle cx="198" cy="118" r="13" fill="#1b1b1b" stroke="#777" stroke-width="2" />
+            <circle cx="198" cy="118" r="7" fill="#3a3d40" />
+            <rect x="-20" y="142" width="248" height="28" fill="#090909" />
+          </svg>
+        </div>
+
+        <!-- Hero Model Image -->
+        <img
+          id="hero-model-img"
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=950&q=85"
+          alt="Model Pria Moslem Wear Hitam"
+          class="relative z-[2] w-full h-[94%] object-cover object-top mix-blend-normal brightness-[0.88] contrast-[1.15] saturate-[0.75] select-none"
+        />
+
+        <!-- Bottom-left vignette blend -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/10 pointer-events-none z-[3]"></div>
+
+        <!-- Replace Image Button -->
+        <label
+          for="upload-hero"
+          class="img-upload-trigger absolute bottom-4 left-4 z-30 cursor-pointer bg-black/80 hover:bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm flex items-center gap-1.5 shadow-lg"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          Ganti Foto Model
+        </label>
+        <input id="upload-hero" type="file" accept="image/*" class="hidden" data-target="hero-model-img" />
+      </div>
+
+      <!-- Right Column (43.5%): Dark Diamond/Checkered Pattern -->
+      <div class="w-[43.5%] h-full hero-checkered"></div>
+
+      <!-- Center Typography Block Straddling the 56.5% Split Line -->
+      <div class="absolute inset-0 z-20 pointer-events-none">
+        <!-- "EZZIC" positioned straddling the vertical split line -->
+        <div
+          class="absolute top-[33%] sm:top-[32%] left-[56.5%] -translate-x-[58%] flex items-center select-none"
+        >
+          <span class="font-display italic font-black text-[18px] sm:text-[23px] md:text-[28px] tracking-tighter text-[#0d0d0d] leading-none">
+            EZZ
+          </span>
+          <span class="font-display italic font-black text-[18px] sm:text-[23px] md:text-[28px] tracking-tighter text-white leading-none">
+            IC
+          </span>
+        </div>
+
+        <!-- "Moslem Wear" + overlapping "Style" script -->
+        <div
+          class="absolute top-[39.5%] sm:top-[39%] left-[41%] sm:left-[41.5%] select-none"
+        >
+          <div class="relative inline-block">
+            <h1 class="font-display text-[32px] sm:text-[48px] md:text-[62px] lg:text-[72px] text-white tracking-[-0.03em] leading-[0.95] drop-shadow-[0_4px_14px_rgba(0,0,0,0.45)] whitespace-nowrap">
+              Moslem Wear
+            </h1>
+            <span
+              class="font-script text-[36px] sm:text-[54px] md:text-[70px] lg:text-[82px] text-[#f5efe0] absolute -bottom-[18px] sm:-bottom-[28px] md:-bottom-[36px] left-[22px] sm:left-[34px] md:left-[44px] -rotate-[4deg] drop-shadow-[0_3px_10px_rgba(0,0,0,0.65)] pointer-events-none"
+            >
+              Style
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Static Diagonal Striped Square at Bottom Split Border (No Glitch) -->
+      <div
+        class="striped-square absolute bottom-0 left-[56.5%] -translate-x-1/2 translate-y-[12%] z-20 w-[72px] h-[72px] sm:w-[92px] sm:h-[92px] md:w-[112px] md:h-[112px]"
+        aria-hidden="true"
+      ></div>
+    </section>
+
+    <!-- =========================================================
+         DIAGONAL STRIPED DIVIDER BAR
+    ========================================================== -->
+    <div class="striped-divider relative z-20"></div>
+
+    <!-- =========================================================
+         SVG CURVED DASHED PATH + SCROLL-FOLLOWING PAPER AIRPLANE
+    ========================================================== -->
+    <div id="flight-layer" class="pointer-events-none absolute inset-0 z-10 overflow-hidden">
+      <svg
+        id="flight-svg"
+        class="w-full h-full"
+        viewBox="0 0 1000 2200"
+        preserveAspectRatio="none"
+      >
+        <path
+          id="flight-path"
+          d="M 730 220
+             C 890 310, 910 490, 620 570
+             C 340 645, 70 720, 75 860
+             C 80 1010, 340 1110, 580 1190
+             C 820 1270, 900 1390, 835 1480
+             C 765 1575, 510 1550, 330 1615
+             C 220 1655, 210 1720, 212 1765"
+          fill="none"
+          stroke="rgba(255, 255, 255, 0.72)"
+          stroke-width="2.4"
+          stroke-dasharray="7 8"
+          stroke-linecap="round"
+        />
+      </svg>
+
+      <!-- Paper Airplane Element -->
+      <div
+        id="paper-plane"
+        class="fixed top-0 left-0 z-30 pointer-events-none will-change-transform drop-shadow-[0_4px_10px_rgba(0,0,0,0.85)]"
+        style="width: 30px; height: 30px; margin-left: -15px; margin-top: -15px;"
+      >
+        <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+          <path d="M30 16L4 4L9.5 16L4 28L30 16Z" fill="#ffffff" />
+          <path d="M9.5 16L30 16L6.5 22.5L9.5 16Z" fill="#cfd6df" />
+          <path d="M9.5 16L30 16" stroke="#8f98a3" stroke-width="0.9" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         SECTION: AKSES CEPAT
+    ========================================================== -->
+    <section id="akses-cepat" class="relative z-20 max-w-[780px] mx-auto px-5 sm:px-8 pt-10 sm:pt-12 pb-16">
+      <h2 class="text-center text-white text-[13px] sm:text-[15px] font-extrabold tracking-wide mb-7 sm:mb-9">
+        Akses Cepat
+      </h2>
+
+      <!-- Asymmetric 2-Column Bento Grid -->
+      <div class="relative grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+
+        <!-- Left Column: Two Stacked Square Cards -->
+        <div class="flex flex-col gap-4 sm:gap-5">
+
+          <!-- Card 1: Fasion -->
+          <article class="img-slot-wrapper card-bottom-fade group relative aspect-square w-full bg-[#e6e6e6] shadow-xl">
+            <img
+              id="card-fasion-img"
+              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=85"
+              alt="Fasion Pria"
+              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            />
+            <div class="absolute bottom-7 left-5 z-10">
+              <h3 class="text-[#181818] text-[18px] sm:text-[20px] font-black tracking-tight leading-none mb-2.5">
+                Fasion
+              </h3>
+              <div class="flex items-center gap-2">
+                <button
+                  data-filter="grayscale(25%) contrast(1.05)"
+                  data-card="card-fasion-img"
+                  aria-label="Warna Abu Gelap"
+                  class="swatch-btn w-4 h-4 rounded-full bg-[#3f4652] ring-2 ring-black/20 hover:scale-110 transition cursor-pointer"
+                ></button>
+                <button
+                  data-filter="sepia(18%) brightness(1.06)"
+                  data-card="card-fasion-img"
+                  aria-label="Warna Krem"
+                  class="swatch-btn w-4 h-4 rounded-full bg-[#f7efd2] ring-2 ring-black/20 hover:scale-110 transition cursor-pointer"
+                ></button>
+              </div>
+            </div>
+
+            <label
+              for="upload-fasion"
+              class="img-upload-trigger absolute top-3 right-3 z-20 cursor-pointer bg-black/75 hover:bg-black text-white text-[10px] font-semibold px-2.5 py-1 rounded border border-white/20 backdrop-blur-sm"
+            >
+              Ganti Gambar
+            </label>
+            <input id="upload-fasion" type="file" accept="image/*" class="hidden" data-target="card-fasion-img" />
+          </article>
+
+          <!-- Card 2: Gamis Arab (Bottom Left) -->
+          <article class="img-slot-wrapper card-bottom-fade group relative aspect-square w-full bg-[#e6e6e6] shadow-xl">
+            <img
+              id="card-gamis-left-img"
+              src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?auto=format&fit=crop&w=800&q=85"
+              alt="Gamis Arab Hitam"
+              class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            />
+            <div class="absolute bottom-7 left-5 z-10">
+              <h3 class="text-[#181818] text-[18px] sm:text-[20px] font-black tracking-tight leading-none mb-2.5">
+                Gamis Arab
+              </h3>
+              <div class="flex items-center gap-2">
+                <button
+                  data-filter="brightness(0.88) contrast(1.15)"
+                  data-card="card-gamis-left-img"
+                  aria-label="Warna Hitam Pekat"
+                  class="swatch-btn w-4 h-4 rounded-full bg-[#181818] ring-2 ring-black/20 hover:scale-110 transition cursor-pointer"
+                ></button>
+                <button
+                  data-filter="grayscale(55%) brightness(1.05)"
+                  data-card="card-gamis-left-img"
+                  aria-label="Warna Abu Tua"
+                  class="swatch-btn w-4 h-4 rounded-full bg-[#595959] ring-2 ring-black/20 hover:scale-110 transition cursor-pointer"
+                ></button>
+              </div>
+            </div>
+
+            <label
+              for="upload-gamis-left"
+              class="img-upload-trigger absolute top-3 right-3 z-20 cursor-pointer bg-black/75 hover:bg-black text-white text-[10px] font-semibold px-2.5 py-1 rounded border border-white/20 backdrop-blur-sm"
+            >
+              Ganti Gambar
+            </label>
+            <input id="upload-gamis-left" type="file" accept="image/*" class="hidden" data-target="card-gamis-left-img" />
+          </article>
+        </div>
+
+        <!-- Right Column: Tall Full-Height Card (Gamis Arab) -->
+        <article class="img-slot-wrapper card-bottom-fade group relative min-h-[420px] sm:h-full w-full bg-[#dcdcdc] shadow-xl">
+          <img
+            id="card-gamis-right-img"
+            src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=900&q=85"
+            alt="Gamis Arab Putih"
+            class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          />
+          <div class="absolute bottom-7 left-5 z-10">
+            <h3 class="text-[#181818] text-[18px] sm:text-[20px] font-black tracking-tight leading-none mb-2.5">
+              Gamis Arab
+            </h3>
+            <div class="flex items-center gap-2">
+              <button
+                data-filter="brightness(1.06) contrast(1.02)"
+                data-card="card-gamis-right-img"
+                aria-label="Warna Putih"
+                class="swatch-btn w-4 h-4 rounded-full bg-[#f5f5f5] ring-2 ring-black/25 hover:scale-110 transition cursor-pointer"
+              ></button>
+              <button
+                data-filter="invert(0.88) hue-rotate(180deg) contrast(1.1)"
+                data-card="card-gamis-right-img"
+                aria-label="Warna Hitam"
+                class="swatch-btn w-4 h-4 rounded-full bg-[#141414] ring-2 ring-black/25 hover:scale-110 transition cursor-pointer"
+              ></button>
+            </div>
+          </div>
+
+          <label
+            for="upload-gamis-right"
+            class="img-upload-trigger absolute top-3 right-3 z-20 cursor-pointer bg-black/75 hover:bg-black text-white text-[10px] font-semibold px-2.5 py-1 rounded border border-white/20 backdrop-blur-sm"
+          >
+            Ganti Gambar
+          </label>
+          <input id="upload-gamis-right" type="file" accept="image/*" class="hidden" data-target="card-gamis-right-img" />
+        </article>
+
+        <!-- Static Diagonal Striped Square #2 at Bottom Right Corner (No Glitch) -->
+        <div
+          class="striped-square hidden sm:block absolute -bottom-11 -right-11 z-30 w-[92px] h-[92px] md:w-[106px] md:h-[106px]"
+          aria-hidden="true"
+        ></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: MENGAPA EZZIC?
+    ========================================================== -->
+    <section id="mengapa-ezzic" class="relative z-20 max-w-[1180px] mx-auto px-5 sm:px-10 pt-10 sm:pt-14 pb-56 sm:pb-72">
+      <h2 class="text-center text-white text-[13px] sm:text-[15px] font-extrabold tracking-wide mb-10 sm:mb-12">
+        Mengapa EZZIC?
+      </h2>
+
+      <!-- Repeating Typographic Text Block Matching Reference -->
+      <div class="font-mono-wide text-[10px] sm:text-[12px] md:text-[13.5px] leading-[1.45] tracking-[0.06em] text-white/90 break-all select-none">
+        <p>
+          Mengapa EZZIC?Mengapa EZZIC?%wQWEwateQWrMengapa EZZIC?Mengapa EZZIC?Mengapa EZZIC?
+          Mengapa EZZIC?Mengapa EZZIC?Mengapa EZZIC?Mengapa EZZIC?Mengapa EZZIC?
+          Mengapa EZZIC?Mengapa 12342513524328Lsfseyurseorgdarsog EZZIC?
+          Mengapa EZZIC?Mengapasesegdht EZZIC?Mengapa EZZIC?Mengapa EZZIC?Mengapa EZZIC?
+          Mengapa EZZICfsetshtjdyrswea?Mengapa EwerwerewZZIC?Menga
+          pa<span class="inline-block w-[32%] sm:w-[44%]"></span>qwrwqqjngfdsaEZZIC?
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- =========================================================
+       INTERACTIVE SCRIPTS
+  ========================================================== -->
+  <script>
+    // 1. Toggle Mobile Menu (dari code ezzic)
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-link').forEach((link) => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // 2. Custom Image Upload Handler for Every Image Slot
+    document.querySelectorAll('input[type="file"][data-target]').forEach((input) => {
+      input.addEventListener('change', (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        const targetId = input.getAttribute('data-target');
+        const targetImg = document.getElementById(targetId);
+        if (targetImg) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            targetImg.src = ev.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+
+    // 3. Interactive Color Swatches on Product Cards
+    document.querySelectorAll('.swatch-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-card');
+        const filterVal = btn.getAttribute('data-filter');
+        const img = document.getElementById(targetId);
+        if (img) {
+          img.style.filter = filterVal;
+        }
+      });
+    });
+
+    // 4. Paper Airplane Scroll Path Follower
+    const flightSvg = document.getElementById('flight-svg');
+    const flightPath = document.getElementById('flight-path');
+    const paperPlane = document.getElementById('paper-plane');
+
+    function updatePaperPlanePosition() {
+      if (!flightPath || !flightSvg || !paperPlane) return;
+
+      const totalLength = flightPath.getTotalLength();
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollProgress = docHeight > 0 ? Math.min(Math.max(window.scrollY / docHeight, 0), 1) : 0;
+
+      const currentDistance = scrollProgress * totalLength;
+      const point = flightPath.getPointAtLength(currentDistance);
+
+      const delta = 2;
+      const p1 = flightPath.getPointAtLength(Math.max(0, currentDistance - delta));
+      const p2 = flightPath.getPointAtLength(Math.min(totalLength, currentDistance + delta));
+
+      const svgRect = flightSvg.getBoundingClientRect();
+      const scaleX = svgRect.width / 1000;
+      const scaleY = svgRect.height / 2200;
+
+      const screenX = svgRect.left + point.x * scaleX;
+      const screenY = svgRect.top + point.y * scaleY;
+
+      const dx = (p2.x - p1.x) * scaleX;
+      const dy = (p2.y - p1.y) * scaleY;
+      const angleDeg = Math.atan2(dy, dx) * (180 / Math.PI);
+
+      paperPlane.style.transform = `translate3d(${screenX}px, ${screenY}px, 0) rotate(${angleDeg}deg)`;
+    }
+
+    window.addEventListener('scroll', () => requestAnimationFrame(updatePaperPlanePosition), { passive: true });
+    window.addEventListener('resize', () => requestAnimationFrame(updatePaperPlanePosition));
+    window.addEventListener('load', updatePaperPlanePosition);
+    updatePaperPlanePosition();
+  </script>
+</body>
+</html>
