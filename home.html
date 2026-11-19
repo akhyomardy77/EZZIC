@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EZZIC I Home</title>
+  <title>EZZIC — Moslem Wear Style</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,6 +15,7 @@
     :root {
       --bg-dark: #1d1d1d;
       --cream: #f7f1e1;
+      --nav-match: #ffffff;
     }
 
     * {
@@ -33,6 +34,32 @@
     /* Font Logo EZZIC */
     .font-logo {
       font-family: 'Anton', sans-serif;
+    }
+
+    /* Warna di belakang navbar saat masih di atas (menyatu dengan warna navbar) */
+    #navbar-backdrop {
+      background-color: var(--nav-match);
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    #navbar-backdrop.scrolled {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Efek blur pada navbar saat di-scroll */
+    .nav-surface-wrap {
+      transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+    }
+
+    .nav-surface-wrap.is-blurred {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-surface-wrap.is-blurred .nav-poly {
+      fill: rgba(255, 255, 255, 0.78);
     }
 
     /* Diagonal Striped Ticker / Divider Bar */
@@ -89,7 +116,8 @@
       transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
-    .img-slot-wrapper:hover .img-upload-trigger {
+    .img-slot-wrapper:hover .img-upload-trigger,
+    .img-slot-wrapper:focus-within .img-upload-trigger {
       opacity: 1;
     }
 
@@ -111,45 +139,53 @@
   <!-- MAIN PAGE WRAPPER -->
   <div id="page-container" class="relative w-full min-h-screen bg-[#1d1d1d] overflow-hidden">
 
+    <!-- Warna latar di belakang navbar saat masih di posisi paling atas (menyatu dengan navbar) -->
+    <div
+      id="navbar-backdrop"
+      class="fixed top-0 inset-x-0 h-[104px] sm:h-[118px] z-40 pointer-events-none"
+      aria-hidden="true"
+    ></div>
+
     <!-- =========================================================
-         NAVBAR TETAP (Transparent Diagonal Cutouts)
+         NAVBAR TETAP TERLIHAT + BLUR SAAT DI-SCROLL
     ========================================================== -->
-    <header class="fixed top-6 sm:top-7 left-0 right-0 z-50 px-5 sm:px-10 md:px-14 pointer-events-none select-none">
-      <div class="relative mx-auto w-full max-w-[1280px] h-[56px] sm:h-[62px] pointer-events-auto">
-        
-        <!-- Latar Putih Solid dengan 3 Celah Potongan Diagonal Transparan 100% -->
-        <svg 
-          class="absolute inset-0 w-full h-full drop-shadow-[0_10px_28px_rgba(0,0,0,0.28)]" 
-          viewBox="0 0 1280 62" 
-          preserveAspectRatio="none" 
+    <header id="main-header" class="fixed top-6 sm:top-7 left-0 right-0 z-50 px-5 sm:px-10 md:px-14 pointer-events-none select-none">
+      <div id="nav-surface" class="nav-surface-wrap relative mx-auto w-full max-w-[1280px] h-[56px] sm:h-[62px] pointer-events-auto">
+
+        <!-- Latar Putih dengan 3 Celah Potongan Diagonal Transparan 100% -->
+        <svg
+          class="absolute inset-0 w-full h-full drop-shadow-[0_10px_28px_rgba(0,0,0,0.28)]"
+          viewBox="0 0 1280 62"
+          preserveAspectRatio="none"
           fill="none"
         >
           <!-- Blok Putih Kiri (Tempat Logo EZZIC) -->
-          <polygon points="0,0 326,0 374,62 0,62" fill="#FFFFFF" />
+          <polygon class="nav-poly transition-colors duration-300" points="0,0 326,0 374,62 0,62" fill="#FFFFFF" />
 
           <!-- Bilah Putih Miring Pertama -->
-          <polygon points="342,0 374,0 422,62 390,62" fill="#FFFFFF" />
+          <polygon class="nav-poly transition-colors duration-300" points="342,0 374,0 422,62 390,62" fill="#FFFFFF" />
 
           <!-- Bagian Putih Kanan -->
-          <path 
-            d="M 390,0 
-               L 1280,0 
-               L 1280,62 
-               L 486,62 
-               L 456,23 
-               L 439,23 
-               L 469,62 
-               L 422,62 
-               L 407,43 
-               L 424,43 
-               Z" 
-            fill="#FFFFFF" 
+          <path
+            class="nav-poly transition-colors duration-300"
+            d="M 390,0
+               L 1280,0
+               L 1280,62
+               L 486,62
+               L 456,23
+               L 439,23
+               L 469,62
+               L 422,62
+               L 407,43
+               L 424,43
+               Z"
+            fill="#FFFFFF"
           />
         </svg>
 
         <!-- Konten Interaktif di Atas Latar Navbar -->
         <div class="relative z-10 w-full h-full flex items-center justify-between px-4 sm:px-7">
-          
+
           <!-- Kiri: Logo Teks EZZIC -->
           <a href="#beranda" class="flex items-center group" aria-label="EZZIC Home">
             <span class="font-logo text-black text-[28px] sm:text-[32px] leading-none tracking-[-0.02em] scale-y-[1.15] inline-block group-hover:opacity-75 transition-opacity">
@@ -161,7 +197,7 @@
           <div class="flex items-center gap-8 sm:gap-16 md:gap-24 lg:gap-28 pr-1 sm:pr-2">
             <nav class="hidden md:flex items-center gap-10 lg:gap-14 text-[12px] font-medium tracking-normal text-[#111111]">
               <a href="#beranda" class="hover:opacity-60 transition-opacity">Beranda</a>
-              <a href="products.html" class="hover:opacity-60 transition-opacity">Toko</a>
+              <a href="#akses-cepat" class="hover:opacity-60 transition-opacity">Toko</a>
               <a href="#mengapa-ezzic" class="hover:opacity-60 transition-opacity">Tentang Kami</a>
             </nav>
 
@@ -183,7 +219,7 @@
             <a href="#akses-cepat" class="mobile-link py-1 hover:opacity-65">Toko</a>
             <a href="#mengapa-ezzic" class="mobile-link py-1 hover:opacity-65">Tentang Kami</a>
             <div class="pt-2 border-t border-neutral-200 text-[11px] text-neutral-500 font-normal">
-              Tip: Arahkan kursor pada foto untuk mengganti gambar dari perangkat Anda.
+              Tip: Arahkan kursor atau ketuk tombol pada slide untuk mengganti foto Laptop (A) & HP (B).
             </div>
           </div>
         </div>
@@ -192,78 +228,180 @@
     </header>
 
     <!-- =========================================================
-         HERO SECTION (FULL-WIDTH IMAGE SLIDER / CAROUSEL)
+         HERO SECTION (FULL-WIDTH IMAGE SLIDER: GAMBAR A LAPTOP & GAMBAR B HP)
     ========================================================== -->
-    <section id="beranda" class="relative w-full h-[520px] sm:h-[600px] md:h-[680px] overflow-hidden select-none group">
+    <section
+      id="beranda"
+      class="relative w-full h-[540px] sm:h-[600px] md:h-[690px] pt-[92px] sm:pt-[104px] bg-[#141414] overflow-hidden select-none group"
+    >
 
       <!-- Slider Track Container -->
       <div id="hero-slider-track" class="flex w-full h-full transition-transform duration-700 ease-out">
 
-        <!-- SLIDE 1 (Default: 5.png dari folder lokal) -->
+        <!-- SLIDE 1: Gambar A (Laptop) & Gambar B (HP) -->
         <div class="img-slot-wrapper relative w-full h-full flex-shrink-0 bg-[#141414]">
-          <img
-            id="slide-img-1"
-            src="5.png"
-            onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1600&q=85'"
-            alt="EZZIC Slide 1"
-            class="w-full h-full object-cover object-center brightness-[0.85] contrast-[1.08]"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/40 pointer-events-none"></div>
+          <picture class="w-full h-full block">
+            <!-- Foto B: Khusus HP (< 768px) -->
+            <source
+              id="slide-mobile-1"
+              media="(max-width: 767px)"
+              srcset="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85"
+            />
+            <!-- Foto A: Khusus Laptop / Desktop (>= 768px), fallback ke 5.png -->
+            <img
+              id="slide-desktop-1"
+              src="5.png"
+              onerror="this.src='https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1600&q=85'"
+              alt="EZZIC Slide 1"
+              class="w-full h-full object-cover object-[center_18%] brightness-[0.86] contrast-[1.08]"
+            />
+          </picture>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/35 pointer-events-none"></div>
 
-          <!-- Tombol Ganti Foto Slide 1 -->
-          <label
-            for="upload-slide-1"
-            class="img-upload-trigger absolute top-28 left-6 z-30 cursor-pointer bg-black/80 hover:bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm flex items-center gap-1.5 shadow-lg"
-          >
-            Ganti Foto Slide 1
-          </label>
-          <input id="upload-slide-1" type="file" accept="image/*" class="hidden" data-target="slide-img-1" />
+          <!-- Tombol Ganti Foto A (Laptop) & Foto B (HP) Slide 1 -->
+          <div class="img-upload-trigger absolute top-4 left-4 sm:left-6 z-30 flex flex-wrap items-center gap-2">
+            <label
+              for="upload-s1-desktop"
+              class="cursor-pointer bg-black/80 hover:bg-black text-white text-[10px] sm:text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm shadow-lg"
+            >
+              Ganti Foto A (Laptop)
+            </label>
+            <input
+              id="upload-s1-desktop"
+              type="file"
+              accept="image/*"
+              class="hidden"
+              data-desktop-target="slide-desktop-1"
+              data-mobile-target="slide-mobile-1"
+            />
+
+            <label
+              for="upload-s1-mobile"
+              class="cursor-pointer bg-black/80 hover:bg-black text-white text-[10px] sm:text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm shadow-lg"
+            >
+              Ganti Foto B (HP)
+            </label>
+            <input
+              id="upload-s1-mobile"
+              type="file"
+              accept="image/*"
+              class="hidden"
+              data-mobile-only-target="slide-mobile-1"
+              data-desktop-fallback="slide-desktop-1"
+            />
+          </div>
         </div>
 
-        <!-- SLIDE 2 -->
+        <!-- SLIDE 2: Gambar A (Laptop) & Gambar B (HP) -->
         <div class="img-slot-wrapper relative w-full h-full flex-shrink-0 bg-[#141414]">
-          <img
-            id="slide-img-2"
-            src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1600&q=85"
-            alt="EZZIC Slide 2"
-            class="w-full h-full object-cover object-top brightness-[0.82] contrast-[1.08]"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/40 pointer-events-none"></div>
+          <picture class="w-full h-full block">
+            <!-- Foto B: Khusus HP (< 768px) -->
+            <source
+              id="slide-mobile-2"
+              media="(max-width: 767px)"
+              srcset="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?auto=format&fit=crop&w=900&q=85"
+            />
+            <!-- Foto A: Khusus Laptop / Desktop (>= 768px) -->
+            <img
+              id="slide-desktop-2"
+              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1600&q=85"
+              alt="EZZIC Slide 2"
+              class="w-full h-full object-cover object-[center_18%] brightness-[0.84] contrast-[1.08]"
+            />
+          </picture>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/35 pointer-events-none"></div>
 
-          <!-- Tombol Ganti Foto Slide 2 -->
-          <label
-            for="upload-slide-2"
-            class="img-upload-trigger absolute top-28 left-6 z-30 cursor-pointer bg-black/80 hover:bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm flex items-center gap-1.5 shadow-lg"
-          >
-            Ganti Foto Slide 2
-          </label>
-          <input id="upload-slide-2" type="file" accept="image/*" class="hidden" data-target="slide-img-2" />
+          <!-- Tombol Ganti Foto A (Laptop) & Foto B (HP) Slide 2 -->
+          <div class="img-upload-trigger absolute top-4 left-4 sm:left-6 z-30 flex flex-wrap items-center gap-2">
+            <label
+              for="upload-s2-desktop"
+              class="cursor-pointer bg-black/80 hover:bg-black text-white text-[10px] sm:text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm shadow-lg"
+            >
+              Ganti Foto A (Laptop)
+            </label>
+            <input
+              id="upload-s2-desktop"
+              type="file"
+              accept="image/*"
+              class="hidden"
+              data-desktop-target="slide-desktop-2"
+              data-mobile-target="slide-mobile-2"
+            />
+
+            <label
+              for="upload-s2-mobile"
+              class="cursor-pointer bg-black/80 hover:bg-black text-white text-[10px] sm:text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm shadow-lg"
+            >
+              Ganti Foto B (HP)
+            </label>
+            <input
+              id="upload-s2-mobile"
+              type="file"
+              accept="image/*"
+              class="hidden"
+              data-mobile-only-target="slide-mobile-2"
+              data-desktop-fallback="slide-desktop-2"
+            />
+          </div>
         </div>
 
-        <!-- SLIDE 3 -->
+        <!-- SLIDE 3: Gambar A (Laptop) & Gambar B (HP) -->
         <div class="img-slot-wrapper relative w-full h-full flex-shrink-0 bg-[#141414]">
-          <img
-            id="slide-img-3"
-            src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1600&q=85"
-            alt="EZZIC Slide 3"
-            class="w-full h-full object-cover object-top brightness-[0.82] contrast-[1.08]"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/40 pointer-events-none"></div>
+          <picture class="w-full h-full block">
+            <!-- Foto B: Khusus HP (< 768px) -->
+            <source
+              id="slide-mobile-3"
+              media="(max-width: 767px)"
+              srcset="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85"
+            />
+            <!-- Foto A: Khusus Laptop / Desktop (>= 768px) -->
+            <img
+              id="slide-desktop-3"
+              src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1600&q=85"
+              alt="EZZIC Slide 3"
+              class="w-full h-full object-cover object-[center_18%] brightness-[0.84] contrast-[1.08]"
+            />
+          </picture>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/35 pointer-events-none"></div>
 
-          <!-- Tombol Ganti Foto Slide 3 -->
-          <label
-            for="upload-slide-3"
-            class="img-upload-trigger absolute top-28 left-6 z-30 cursor-pointer bg-black/80 hover:bg-black text-white text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm flex items-center gap-1.5 shadow-lg"
-          >
-            Ganti Foto Slide 3
-          </label>
-          <input id="upload-slide-3" type="file" accept="image/*" class="hidden" data-target="slide-img-3" />
+          <!-- Tombol Ganti Foto A (Laptop) & Foto B (HP) Slide 3 -->
+          <div class="img-upload-trigger absolute top-4 left-4 sm:left-6 z-30 flex flex-wrap items-center gap-2">
+            <label
+              for="upload-s3-desktop"
+              class="cursor-pointer bg-black/80 hover:bg-black text-white text-[10px] sm:text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm shadow-lg"
+            >
+              Ganti Foto A (Laptop)
+            </label>
+            <input
+              id="upload-s3-desktop"
+              type="file"
+              accept="image/*"
+              class="hidden"
+              data-desktop-target="slide-desktop-3"
+              data-mobile-target="slide-mobile-3"
+            />
+
+            <label
+              for="upload-s3-mobile"
+              class="cursor-pointer bg-black/80 hover:bg-black text-white text-[10px] sm:text-[11px] font-semibold px-3 py-1.5 rounded border border-white/25 backdrop-blur-sm shadow-lg"
+            >
+              Ganti Foto B (HP)
+            </label>
+            <input
+              id="upload-s3-mobile"
+              type="file"
+              accept="image/*"
+              class="hidden"
+              data-mobile-only-target="slide-mobile-3"
+              data-desktop-fallback="slide-desktop-3"
+            />
+          </div>
         </div>
 
       </div>
 
       <!-- Overlay Tipografi Tengah di Atas Full Slider -->
-      <div class="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none px-4 text-center">
+      <div class="absolute inset-x-0 top-[92px] sm:top-[104px] bottom-0 z-20 flex flex-col items-center justify-center pointer-events-none px-4 text-center">
         <span class="font-display italic font-black text-[18px] sm:text-[23px] md:text-[26px] tracking-wider text-white/90 uppercase mb-1 drop-shadow">
           EZZIC
         </span>
@@ -283,7 +421,7 @@
       <button
         id="prev-slide"
         aria-label="Slide Sebelumnya"
-        class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/45 hover:bg-white text-white hover:text-black border border-white/25 backdrop-blur-sm flex items-center justify-center transition-all duration-300 cursor-pointer"
+        class="absolute left-4 sm:left-8 top-[56%] -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/45 hover:bg-white text-white hover:text-black border border-white/25 backdrop-blur-sm flex items-center justify-center transition-all duration-300 cursor-pointer"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -293,7 +431,7 @@
       <button
         id="next-slide"
         aria-label="Slide Berikutnya"
-        class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/45 hover:bg-white text-white hover:text-black border border-white/25 backdrop-blur-sm flex items-center justify-center transition-all duration-300 cursor-pointer"
+        class="absolute right-4 sm:right-8 top-[56%] -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/45 hover:bg-white text-white hover:text-black border border-white/25 backdrop-blur-sm flex items-center justify-center transition-all duration-300 cursor-pointer"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -301,7 +439,7 @@
       </button>
 
       <!-- Indikator Titik (Dots) Bawah Slider -->
-      <div class="absolute bottom-7 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5">
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5">
         <button class="slide-dot w-8 h-1.5 bg-white transition-all duration-300 cursor-pointer" data-index="0" aria-label="Slide 1"></button>
         <button class="slide-dot w-4 h-1.5 bg-white/40 hover:bg-white/75 transition-all duration-300 cursor-pointer" data-index="1" aria-label="Slide 2"></button>
         <button class="slide-dot w-4 h-1.5 bg-white/40 hover:bg-white/75 transition-all duration-300 cursor-pointer" data-index="2" aria-label="Slide 3"></button>
@@ -516,9 +654,27 @@
        INTERACTIVE SCRIPTS
   ========================================================== -->
   <script>
-    // 1. Toggle Mobile Menu
-    const menuBtn = document.getElementById('menuBtn');
+    // 1. Saat masih di atas: latar belakang navbar putih menyatu dengan navbar. Saat di-scroll: navbar mendapat efek blur.
+    const navbarBackdrop = document.getElementById('navbar-backdrop');
+    const navSurface = document.getElementById('nav-surface');
     const mobileMenu = document.getElementById('mobileMenu');
+
+    function handleNavbarScroll() {
+      if (window.scrollY > 40) {
+        navbarBackdrop.classList.add('scrolled');
+        navSurface.classList.add('is-blurred');
+      } else {
+        navbarBackdrop.classList.remove('scrolled');
+        navSurface.classList.remove('is-blurred');
+        mobileMenu.classList.add('hidden');
+      }
+    }
+
+    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+    handleNavbarScroll();
+
+    // 2. Toggle Mobile Menu
+    const menuBtn = document.getElementById('menuBtn');
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
@@ -526,7 +682,7 @@
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
 
-    // 2. Hero Full-Width Image Slider (Tombol Panah, Dots, Swipe Sentuh, & Auto-Slide)
+    // 3. Hero Full-Width Image Slider
     const sliderTrack = document.getElementById('hero-slider-track');
     const prevBtn = document.getElementById('prev-slide');
     const nextBtn = document.getElementById('next-slide');
@@ -575,7 +731,6 @@
       });
     });
 
-    // Dukungan geser sentuh (Touch Swipe) di perangkat mobile
     let touchStartX = 0;
     const heroSection = document.getElementById('beranda');
     heroSection.addEventListener('touchstart', (e) => {
@@ -595,24 +750,45 @@
 
     resetAutoSlide();
 
-    // 3. Custom Image Upload Handler for Every Image Slot
-    document.querySelectorAll('input[type="file"][data-target]').forEach((input) => {
+    // 4. Custom Image Upload Handler (Mendukung Foto A Laptop & Foto B HP)
+    document.querySelectorAll('input[type="file"]').forEach((input) => {
       input.addEventListener('change', (e) => {
         const file = e.target.files?.[0];
         if (!file) return;
-        const targetId = input.getAttribute('data-target');
-        const targetImg = document.getElementById(targetId);
-        if (targetImg) {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            targetImg.src = ev.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
+
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const dataUrl = ev.target.result;
+
+          const singleTargetId = input.getAttribute('data-target');
+          if (singleTargetId) {
+            const targetImg = document.getElementById(singleTargetId);
+            if (targetImg) targetImg.src = dataUrl;
+          }
+
+          const desktopTargetId = input.getAttribute('data-desktop-target');
+          if (desktopTargetId) {
+            const desktopImg = document.getElementById(desktopTargetId);
+            if (desktopImg) desktopImg.src = dataUrl;
+          }
+
+          const mobileTargetId = input.getAttribute('data-mobile-target') || input.getAttribute('data-mobile-only-target');
+          if (mobileTargetId) {
+            const mobileSource = document.getElementById(mobileTargetId);
+            if (mobileSource) mobileSource.srcset = dataUrl;
+          }
+
+          const desktopFallbackId = input.getAttribute('data-desktop-fallback');
+          if (desktopFallbackId && window.innerWidth < 768) {
+            const fallbackImg = document.getElementById(desktopFallbackId);
+            if (fallbackImg) fallbackImg.src = dataUrl;
+          }
+        };
+        reader.readAsDataURL(file);
       });
     });
 
-    // 4. Interactive Color Swatches on Product Cards
+    // 5. Interactive Color Swatches on Product Cards
     document.querySelectorAll('.swatch-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         const targetId = btn.getAttribute('data-card');
@@ -624,7 +800,7 @@
       });
     });
 
-    // 5. Paper Airplane Scroll Path Follower
+    // 6. Paper Airplane Scroll Path Follower
     const flightSvg = document.getElementById('flight-svg');
     const flightPath = document.getElementById('flight-path');
     const paperPlane = document.getElementById('paper-plane');
